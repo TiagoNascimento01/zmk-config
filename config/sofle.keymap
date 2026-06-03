@@ -20,16 +20,15 @@
 
 / {
     // AJUSTE DE TEMPO GLOBAL PARA O MOD-TAP (&mt)
-
     chosen {
         zmk,tapping-term-ms = <480>; // Aumenta o tempo para 480ms (padrão é 200ms)
     };
 
     // Altera o comportamento global para dar preferência ao toque rápido
-
     behaviors {
         mt { flavor = "tap-preferred"; };
 
+        // Seu comportamento customizado para a Home Row
         HWR: HWR {
             compatible = "zmk,behavior-hold-tap";
             label = "HWR";
@@ -41,6 +40,32 @@
             flavor = "tap-preferred";
             tapping-term-ms = <300>;
         };
+
+        // CONFIGURAÇÃO DO MOUSE: Resposta mais rápida e fluida
+        mmv {
+            compatible = "zmk,behavior-point-move";
+            #binding-cells = <1>;
+            trigger-period-ms = <16>;      // Atualização em 60Hz (movimento liso)
+            time-to-max-speed-ms = <200>;   // Chega na velocidade máxima em apenas 200ms
+            acceleration-exponent = <1>;    // Aceleração linear direta
+        };
+
+        // CONFIGURAÇÃO DO SCROLL: Rolagem de página mais rápida
+        msc {
+            compatible = "zmk,behavior-point-scroll";
+            #binding-cells = <1>;
+            trigger-period-ms = <16>;
+            time-to-max-speed-ms = <200>;
+        };
+    };
+
+    // MULTIPLICADOR DE VELOCIDADE: É isso que faz o ponteiro voar para todos os lados!
+    &mmv {
+        max-speed-hz = <120>; // Padrão é muito baixo (~40). Ajustado para 120 para máxima agilidade.
+    };
+
+    &msc {
+        max-speed-hz = <40>;  // Velocidade máxima da rolagem
     };
 
     // Activate ADJUST layer by pressing raise and lower
@@ -53,7 +78,7 @@
             then-layer = <ADJUST>;
         };
     };
-*/
+    */
 
     keymap {
         compatible = "zmk,keymap";
@@ -65,15 +90,15 @@
             // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
             // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
             // |  TAB  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-            //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
+            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  | |        |  N   |  M    |  ,    |  .   |   /   | SHIFT |
+            //                | GUI | ALT  | CTRL | LOWER|  ENTER | | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp SQT          &kp N1  &kp N2           &kp N3        &kp N4        &kp N5                                        &kp N6     &kp N7         &kp N8             &kp N9       &kp N0            &kp BACKSPACE
-&kp TAB          &kp Q   &kp W            &kp E         &kp R         &kp T                                         &kp Y      &kp U          &kp I              &kp O        &kp P             &kp ENTER
-&kp CAPS         &kp A   &HWR LEFT_ALT S  &HWR LCTRL D  &HWR LSHFT F  &kp G                                         &kp H      &HWR RSHFT J   &HWR RCTRL K       &HWR LALT L  &kp PT_C_CEDILLA  &kp PT_ACUTE
-&kp PT_QUESTION  &kp Z   &kp X            &kp C         &kp V         &kp B   &rgb_ug RGB_TOG    &ext_power EP_TOG  &kp N      &kp M          &kp COMMA          &kp DOT      &kp PT_SEMI       &kp PT_TILDE
-                         &kp LSHFT        &kp LCTRL     &kp LEFT_ALT  &mo 3   &mo 1              &kp SPACE          &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
+&kp SQT          &kp N1  &kp N2           &kp N3        &kp N4        &kp N5                                                        &kp N6     &kp N7         &kp N8             &kp N9       &kp N0            &kp BACKSPACE
+&kp TAB          &kp Q   &kp W            &kp E         &kp R         &kp T                                                         &kp Y      &kp U          &kp I              &kp O        &kp P             &kp ENTER
+&kp CAPS         &kp A   &HWR LEFT_ALT S  &HWR LCTRL D  &HWR LSHFT F  &kp G                                                         &kp H      &HWR RSHFT J   &HWR RCTRL K       &HWR LALT L  &kp PT_C_CEDILLA  &kp PT_ACUTE
+&kp PT_QUESTION  &kp Z   &kp X            &kp C         &kp V         &kp B  &rgb_ug RGB_TOG    &ext_power EP_TOG  &kp N      &kp M          &kp COMMA          &kp DOT      &kp PT_SEMI       &kp PT_TILDE
+                         &kp LSHFT        &kp LCTRL     &kp LEFT_ALT  &mo 3  &mo 1              &kp SPACE          &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -86,15 +111,15 @@
             // ------------------------------------------------------------------------------------------------------------
             // |       |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
             // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |  F12  |
-            // |       |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   |   |
-            // |       |  =  |  -  |  +   |  {   |  }   |        |  |       |  [   |  ]    |  ;    |  :   |   \   |       |
-            //               |     |      |      |      |        |  |       |      |       |       |      |
+            // |       |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  * |  (   |   )   |   |   |
+            // |       |  =  |  -  |  +   |  {   |  }   |        | |        |  [   |  ]    |  ;    |  :   |   \   |       |
+            //                |     |      |      |      |        | |        |      |       |       |      |
 
             bindings = <
-&kp ESC            &kp F1      &kp F2        &kp F3      &kp F4        &kp F5                             &kp F6          &kp F7                         &kp F8                          &kp F9                         &kp F10               &kp DEL
-&ext_power EP_TOG  &none       &none         &kp MINUS   &kp PLUS      &kp PRINTSCREEN                    &none           &kp HOME                       &kp END                         &none                          &none                 &kp F11
-&rgb_ug RGB_BRI    &none       &kp LEFT_ALT  &kp LCTRL   &kp RSHFT     &none                              &kp EQUAL       &mt RSHFT PT_LEFT_PARENTHESIS  &mt RCTRL PT_RIGHT_PARENTHESIS  &mt RIGHT_ALT PT_LEFT_BRACKET  &kp PT_RIGHT_BRACKET  &kp GRAVE
-&kp PT_BACKSLASH   &kp K_UNDO  &kp K_CUT     &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp PT_LEFT_BRACE              &kp PT_RIGHT_BRACE              &none                          &kp PT_SLASH          &kp PT_CARET
+&kp ESC            &kp F1      &kp F2        &kp F3      &kp F4        &kp F5                                             &kp F6          &kp F7                         &kp F8                          &kp F9                          &kp F10               &kp DEL
+&ext_power EP_TOG  &none       &none         &kp MINUS   &kp PLUS      &kp PRINTSCREEN                                    &none           &kp HOME                       &kp END                         &none                           &none                 &kp F11
+&rgb_ug RGB_BRI    &none       &kp LEFT_ALT  &kp LCTRL   &kp RSHFT     &none                                              &kp EQUAL       &mt RSHFT PT_LEFT_PARENTHESIS  &mt RCTRL PT_RIGHT_PARENTHESIS  &mt RIGHT_ALT PT_LEFT_BRACKET  &kp PT_RIGHT_BRACKET  &kp GRAVE
+&kp PT_BACKSLASH   &kp K_UNDO  &kp K_CUT     &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp PT_LEFT_BRACE               &kp PT_RIGHT_BRACE              &none                           &kp PT_SLASH          &kp PT_CARET
                                &kp LSHFT     &kp LCTRL   &kp LEFT_ALT  &trans           &trans    &trans  &trans          &kp RIGHT_ALT                  &kp RCTRL                       &kp RSHFT
             >;
 
@@ -107,16 +132,16 @@
             // ------------------------------------------------------------------------------------------------------------
             // | BTCLR | BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
             // |       | INS  | PSCR | GUI   |       |      |                | PGUP |      |   ^   |      |       |       |
-            // |       | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   <- |   v   |  ->  |  DEL  | BKSPC |
-            // |       | UNDO | CUT  | COPY  | PASTE |      |      |  |      |      |      |       |      |       |       |
-            //                |      |       |       |      |      |  |      |      |      |       |      |
+            // |       | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |  <-  |   v   |  ->  |  DEL  | BKSPC |
+            // |       | UNDO | CUT  | COPY  | PASTE |      |      | |        |      |      |       |      |       |       |
+            //                |      |       |       |       |      | |        |      |      |       |      |
 
             bindings = <
 &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3     &bt BT_SEL 4                    &trans    &trans         &trans     &trans     &trans  &trans
 &trans      &mkp MB5      &none           &mmv MOVE_UP    &trans           &mkp MB2                        &mkp MB2  &trans         &kp UP     &trans     &none   &trans
 &trans      &mkp MB4      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB1                        &mkp MB1  &kp LEFT       &kp DOWN   &kp RIGHT  &none   &none
-&trans      &kp F5        &none           &msc SCRL_DOWN  &msc SCRL_UP     &mkp MB3      &trans    &trans  &mkp MB3  &trans         &trans     &trans     &trans  &trans
-                          &kp LSHFT       &kp LCTRL       &kp LEFT_ALT     &trans        &trans    &trans  &trans    &kp RIGHT_ALT  &kp RCTRL  &kp RSHFT
+&trans      &kp F5        &none           &msc SCRL_DOWN  &msc SCRL_UP     &mkp MB3        &trans  &trans  &mkp MB3  &trans         &trans     &trans     &trans  &trans
+                          &kp LSHFT       &kp LCTRL       &kp LEFT_ALT     &trans          &trans  &trans  &trans    &kp RIGHT_ALT  &kp RCTRL  &kp RSHFT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -132,11 +157,11 @@
 
             display-name = "RGB_Num";
             bindings = <
-&rgb_ug RGB_BRI  &bt BT_CLR    &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                            &none  &none         &none         &none         &none  &none
-&rgb_ug RGB_BRD  &bt BT_SEL 0  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &none                                   &none  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &none  &none
-&rgb_ug RGB_EFF  &none         &none            &none            &none            &none                                   &none  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &none  &none
-&rgb_ug RGB_EFR  &none         &none            &none            &none            &none         &rgb_ug RGB_TOG    &none  &none  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &none  &none
-                               &kp LSHFT        &kp LCTRL        &kp LEFT_ALT     &none         &none              &none  &none  &none         &kp NUMBER_0  &none
+&rgb_ug RGB_BRI  &bt BT_CLR    &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                                            &none  &none         &none         &none         &none  &none
+&rgb_ug RGB_BRD  &bt BT_SEL 0  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &none                                                   &none  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &none  &none
+&rgb_ug RGB_EFF  &none         &none            &none            &none            &none                                                   &none  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &none  &none
+&rgb_ug RGB_EFR  &none         &none            &none            &none            &none            &rgb_ug RGB_TOG    &none  &none  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &none  &none
+                               &kp LSHFT        &kp LCTRL        &kp LEFT_ALT     &none            &none              &none  &none  &none         &kp NUMBER_0  &none
             >;
         };
     };
