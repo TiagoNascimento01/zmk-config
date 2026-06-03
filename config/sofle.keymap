@@ -21,7 +21,7 @@
 / {
     // AJUSTE DE TEMPO GLOBAL PARA O MOD-TAP (&mt)
     chosen {
-        zmk,tapping-term-ms = <380>; // Aumenta o tempo para 380ms (padrão é 200ms)
+        zmk,tapping-term-ms = <480>; // Aumenta o tempo para 480ms (padrão é 200ms)
     };
 
     // Altera o comportamento global para dar preferência ao toque rápido
