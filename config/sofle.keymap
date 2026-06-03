@@ -34,7 +34,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            display-name = "default";
+            display-name = "Letras";
 
             // ------------------------------------------------------------------------------------------------------------
             // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
@@ -44,18 +44,18 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp SQT          &kp N1  &kp N2     &kp N3     &kp N4  &kp N5                                        &kp N6     &kp N7         &kp N8             &kp N9     &kp N0            &kp BACKSPACE
-&kp TAB          &kp Q   &kp W      &kp E      &kp R   &kp T                                         &kp Y      &kp U          &kp I              &kp O      &kp P             &kp ENTER
-&kp CAPS         &kp A   &kp S      &kp D      &kp F   &kp G                                         &kp H      &kp J          &kp K              &kp L      &kp PT_C_CEDILLA  &kp PT_ACUTE
-&kp PT_QUESTION  &kp Z   &kp X      &kp C      &kp V   &kp B   &rgb_ug RGB_TOG    &ext_power EP_TOG  &kp N      &kp M          &kp COMMA          &kp DOT    &kp PT_SEMI       &kp PT_TILDE
-                         &kp LSHFT  &kp LCTRL  &mo 3   &mo 3   &mo 1              &kp SPACE          &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
+&kp SQT          &kp N1  &kp N2          &kp N3       &kp N4        &kp N5                                        &kp N6     &kp N7         &kp N8             &kp N9      &kp N0            &kp BACKSPACE
+&kp TAB          &kp Q   &kp W           &kp E        &kp R         &kp T                                         &kp Y      &kp U          &kp I              &kp O       &kp P             &kp ENTER
+&kp CAPS         &kp A   &mt LEFT_ALT S  &mt LCTRL D  &mt LSHFT F   &kp G                                         &kp H      &mt RSHFT J    &mt RCTRL K        &mt LALT L  &kp PT_C_CEDILLA  &kp PT_ACUTE
+&kp PT_QUESTION  &kp Z   &kp X           &kp C        &kp V         &kp B   &rgb_ug RGB_TOG    &ext_power EP_TOG  &kp N      &kp M          &kp COMMA          &kp DOT     &kp PT_SEMI       &kp PT_TILDE
+                         &kp LSHFT       &kp LCTRL    &kp LEFT_ALT  &mo 3   &mo 1              &kp SPACE          &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         lower_layer {
-            display-name = "lower";
+            display-name = "Char";
 
             // TODO: Some binds are waiting for shifted keycode support.
             // ------------------------------------------------------------------------------------------------------------
@@ -66,18 +66,18 @@
             //               |     |      |      |      |        |  |       |      |       |       |      |
 
             bindings = <
-&kp ESC            &kp F1      &kp F2     &kp F3      &kp F4        &kp F5                             &kp F6          &kp F7                   &kp F8                    &kp F9               &kp F10               &kp DEL
-&ext_power EP_TOG  &none       &none      &kp MINUS   &kp PLUS      &kp PRINTSCREEN                    &none           &kp HOME                 &kp END                   &none                &none                 &kp F11
-&rgb_ug RGB_BRI    &none       &none      &none       &none         &none                              &kp EQUAL       &kp PT_LEFT_PARENTHESIS  &kp PT_RIGHT_PARENTHESIS  &kp PT_LEFT_BRACKET  &kp PT_RIGHT_BRACKET  &kp GRAVE
-&kp PT_BACKSLASH   &kp K_UNDO  &kp K_CUT  &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp PT_LEFT_BRACE        &kp PT_RIGHT_BRACE        &none                &kp PT_SLASH          &kp PT_CARET
-                               &kp LSHFT  &kp LCTRL   &kp LEFT_ALT  &trans           &trans    &trans  &trans          &kp RIGHT_ALT            &kp RCTRL                 &kp RSHFT
+&kp ESC            &kp F1      &kp F2        &kp F3      &kp F4        &kp F5                             &kp F6          &kp F7                         &kp F8                          &kp F9                         &kp F10               &kp DEL
+&ext_power EP_TOG  &none       &none         &kp MINUS   &kp PLUS      &kp PRINTSCREEN                    &none           &kp HOME                       &kp END                         &none                          &none                 &kp F11
+&rgb_ug RGB_BRI    &none       &kp LEFT_ALT  &kp LCTRL   &kp RSHFT     &none                              &kp EQUAL       &mt RSHFT PT_LEFT_PARENTHESIS  &mt RCTRL PT_RIGHT_PARENTHESIS  &mt RIGHT_ALT PT_LEFT_BRACKET  &kp PT_RIGHT_BRACKET  &kp GRAVE
+&kp PT_BACKSLASH   &kp K_UNDO  &kp K_CUT     &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp PT_LEFT_BRACE              &kp PT_RIGHT_BRACE              &none                          &kp PT_SLASH          &kp PT_CARET
+                               &kp LSHFT     &kp LCTRL   &kp LEFT_ALT  &trans           &trans    &trans  &trans          &kp RIGHT_ALT                  &kp RCTRL                       &kp RSHFT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         raise_layer {
-            display-name = "raise";
+            display-name = "Mouse";
 
             // ------------------------------------------------------------------------------------------------------------
             // | BTCLR | BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
@@ -105,7 +105,7 @@
             // |        |         |         |         |         |         | RGB_TOG | |      |      |      |       |      |       |       |
             //                    |         |         |         |         |         | |      |      |      |       |      |
 
-            display-name = "adjust";
+            display-name = "RGB_Num";
             bindings = <
 &rgb_ug RGB_BRI  &bt BT_CLR    &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                            &none  &none         &none         &none         &none  &none
 &rgb_ug RGB_BRD  &bt BT_SEL 0  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &none                                   &none  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &none  &none
