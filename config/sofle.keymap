@@ -21,7 +21,7 @@
 / {
     // AJUSTE DE TEMPO GLOBAL PARA O MOD-TAP (&mt)
     chosen {
-        zmk,tapping-term-ms = <480>; // Aumenta o tempo para 480ms (padrão é 200ms)
+        zmk,tapping-term-ms = <480>; 
     };
 
     // Altera o comportamento global para dar preferência ao toque rápido
@@ -45,7 +45,7 @@
         mmv {
             compatible = "zmk,behavior-point-move";
             #binding-cells = <1>;
-            trigger-period-ms = <16>;      // Atualização em 60Hz (movimento liso)
+            trigger-period-ms = <16>;      // Atualização em 60Hz
             time-to-max-speed-ms = <200>;   // Chega na velocidade máxima em apenas 200ms
             acceleration-exponent = <1>;    // Aceleração linear direta
         };
@@ -57,15 +57,6 @@
             trigger-period-ms = <16>;
             time-to-max-speed-ms = <200>;
         };
-    };
-
-    // MULTIPLICADOR DE VELOCIDADE: É isso que faz o ponteiro voar para todos os lados!
-    &mmv {
-        max-speed-hz = <120>; // Padrão é muito baixo (~40). Ajustado para 120 para máxima agilidade.
-    };
-
-    &msc {
-        max-speed-hz = <40>;  // Velocidade máxima da rolagem
     };
 
     // Activate ADJUST layer by pressing raise and lower
@@ -148,13 +139,6 @@
         };
 
         adjust_layer {
-            // ----------------------------------------------------------------------------------------------------------------------------
-            // | BTCLR  |  BT1    |  BT2    |   BT3   |   BT4   |   BT5   |                  |      |      |       |      |       |       |
-            // | EXTPWR | RGB_HUD | RGB_HUI | RGB_SAD | RGB_SAI | RGB_EFF |                  |      |      |       |      |       |       |
-            // |        | RGB_BRD | RGB_BRI |         |         |         |                  |      |      |       |      |       |       |
-            // |        |         |         |         |         |         | RGB_TOG | |      |      |      |       |      |       |       |
-            //                    |         |         |         |         |         | |      |      |      |       |      |
-
             display-name = "RGB_Num";
             bindings = <
 &rgb_ug RGB_BRI  &bt BT_CLR    &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                                            &none  &none         &none         &none         &none  &none
@@ -165,4 +149,13 @@
             >;
         };
     };
+};
+
+// O AJUSTE DE VELOCIDADE DEVE FICAR AQUI FORA DA RAIZ (Fim do arquivo)
+&mmv {
+    max-speed-hz = <120>; 
+};
+
+&msc {
+    max-speed-hz = <40>;  
 };
