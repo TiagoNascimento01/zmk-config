@@ -19,8 +19,20 @@
 #define ADJUST 3
 
 / {
-    // Activate ADJUST layer by pressing raise and lower
+    // AJUSTE DE TEMPO GLOBAL PARA O MOD-TAP (&mt)
+    chosen {
+        zmk,tapping-term-ms = <280>; // Aumenta o tempo para 280ms (padrão é 200ms)
+    };
 
+    // Altera o comportamento global para dar preferência ao toque rápido
+    behaviors {
+        mt {
+            flavor = "tap-preferred";
+        };
+    };
+
+    // Activate ADJUST layer by pressing raise and lower
+/*
     conditional_layers {
         compatible = "zmk,conditional-layers";
 
@@ -29,6 +41,7 @@
             then-layer = <ADJUST>;
         };
     };
+*/
 
     keymap {
         compatible = "zmk,keymap";
