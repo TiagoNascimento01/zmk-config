@@ -20,19 +20,31 @@
 
 / {
     // AJUSTE DE TEMPO GLOBAL PARA O MOD-TAP (&mt)
+
     chosen {
         zmk,tapping-term-ms = <480>; // Aumenta o tempo para 480ms (padrão é 200ms)
     };
 
     // Altera o comportamento global para dar preferência ao toque rápido
+
     behaviors {
-        mt {
+        mt { flavor = "tap-preferred"; };
+
+        HWR: HWR {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HWR";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            quick-tap-ms = <175>;
+            hold-trigger-on-release;
             flavor = "tap-preferred";
+            tapping-term-ms = <300>;
         };
     };
 
     // Activate ADJUST layer by pressing raise and lower
-/*
+    /*
     conditional_layers {
         compatible = "zmk,conditional-layers";
 
@@ -57,11 +69,11 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp SQT          &kp N1  &kp N2          &kp N3       &kp N4        &kp N5                                        &kp N6     &kp N7         &kp N8             &kp N9      &kp N0            &kp BACKSPACE
-&kp TAB          &kp Q   &kp W           &kp E        &kp R         &kp T                                         &kp Y      &kp U          &kp I              &kp O       &kp P             &kp ENTER
-&kp CAPS         &kp A   &mt LEFT_ALT S  &mt LCTRL D  &mt LSHFT F   &kp G                                         &kp H      &mt RSHFT J    &mt RCTRL K        &mt LALT L  &kp PT_C_CEDILLA  &kp PT_ACUTE
-&kp PT_QUESTION  &kp Z   &kp X           &kp C        &kp V         &kp B   &rgb_ug RGB_TOG    &ext_power EP_TOG  &kp N      &kp M          &kp COMMA          &kp DOT     &kp PT_SEMI       &kp PT_TILDE
-                         &kp LSHFT       &kp LCTRL    &kp LEFT_ALT  &mo 3   &mo 1              &kp SPACE          &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
+&kp SQT          &kp N1  &kp N2           &kp N3        &kp N4        &kp N5                                        &kp N6     &kp N7         &kp N8             &kp N9       &kp N0            &kp BACKSPACE
+&kp TAB          &kp Q   &kp W            &kp E         &kp R         &kp T                                         &kp Y      &kp U          &kp I              &kp O        &kp P             &kp ENTER
+&kp CAPS         &kp A   &HWR LEFT_ALT S  &HWR LCTRL D  &HWR LSHFT F  &kp G                                         &kp H      &HWR RSHFT J   &HWR RCTRL K       &HWR LALT L  &kp PT_C_CEDILLA  &kp PT_ACUTE
+&kp PT_QUESTION  &kp Z   &kp X            &kp C         &kp V         &kp B   &rgb_ug RGB_TOG    &ext_power EP_TOG  &kp N      &kp M          &kp COMMA          &kp DOT      &kp PT_SEMI       &kp PT_TILDE
+                         &kp LSHFT        &kp LCTRL     &kp LEFT_ALT  &mo 3   &mo 1              &kp SPACE          &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
