@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <behaviors.dtsi>
 #include <behaviors/mouse_keys.dtsi>
+#include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
@@ -44,11 +44,11 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp SQT    &kp N1  &kp N2     &kp N3     &kp N4        &kp N5                           &kp N6     &kp N7         &kp N8             &kp N9     &kp N0            &kp BACKSPACE
-&kp TAB    &kp Q   &kp W      &kp E      &kp R         &kp T                            &kp Y      &kp U          &kp I              &kp O      &kp P             &kp ENTER
-&kp CAPS   &kp A   &kp S      &kp D      &kp F         &kp G                            &kp H      &kp J          &kp K              &kp L      &kp PT_C_CEDILLA  &kp PT_ACUTE
-&kp SLASH  &kp Z   &kp X      &kp C      &kp V         &kp B   &kp C_MUTE    &none      &kp N      &kp M          &kp COMMA          &kp DOT    &kp SEMI          &kp TILDE
-                   &kp LSHFT  &kp LCTRL  &kp LEFT_ALT  &mo 3   &mo 1         &kp SPACE  &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
+&kp SQT   &kp N1  &kp N2     &kp N3     &kp N4        &kp N5                                   &kp N6     &kp N7         &kp N8             &kp N9     &kp N0            &kp BACKSPACE
+&kp TAB   &kp Q   &kp W      &kp E      &kp R         &kp T                                    &kp Y      &kp U          &kp I              &kp O      &kp P             &kp ENTER
+&kp CAPS  &kp A   &kp S      &kp D      &kp F         &kp G                                    &kp H      &kp J          &kp K              &kp L      &kp PT_C_CEDILLA  &kp PT_ACUTE
+&kp FSLH  &kp Z   &kp X      &kp C      &kp V         &kp B   &kp C_MUTE    &ext_power EP_TOG  &kp N      &kp M          &kp COMMA          &kp DOT    &kp PT_SEMI       &kp PT_TILDE
+                  &kp LSHFT  &kp LCTRL  &kp LEFT_ALT  &mo 3   &mo 1         &kp SPACE          &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -66,11 +66,11 @@
             //               |     |      |      |      |        |  |       |      |       |       |      |
 
             bindings = <
-&trans  &kp F1      &kp F2     &kp F3      &kp F4        &kp F5                             &kp F6          &kp F7         &kp F8     &kp F9     &kp F10   &kp DEL
-&none   &none       &none      &kp MINUS   &kp PLUS      &kp PRINTSCREEN                    &none           &kp HOME       &kp END    &none      &none     &kp F11
-&trans  &none       &none      &none       &none         &none                              &kp EQUAL       &kp LPAR       &kp RPAR   &kp LBKT   &kp RBKT  &kp GRAVE
-&trans  &kp K_UNDO  &kp K_CUT  &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp LBRC       &kp RBRC   &none      &kp BSLH  &kp PT_CARET
-                    &kp LSHFT  &kp LCTRL   &kp LEFT_ALT  &trans           &trans    &trans  &trans          &kp RIGHT_ALT  &kp RCTRL  &kp RSHFT
+&kp ESC            &kp F1      &kp F2     &kp F3      &kp F4        &kp F5                             &kp F6          &kp F7                   &kp F8                    &kp F9               &kp F10               &kp DEL
+&ext_power EP_TOG  &none       &none      &kp MINUS   &kp PLUS      &kp PRINTSCREEN                    &none           &kp HOME                 &kp END                   &none                &none                 &kp F11
+&rgb_ug RGB_BRI    &none       &none      &none       &none         &none                              &kp EQUAL       &kp PT_LEFT_PARENTHESIS  &kp PT_RIGHT_PARENTHESIS  &kp PT_LEFT_BRACKET  &kp PT_RIGHT_BRACKET  &kp GRAVE
+&trans             &kp K_UNDO  &kp K_CUT  &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp PT_LEFT_BRACE        &kp PT_RIGHT_BRACE        &none                &kp PT_BACKSLASH      &kp PT_CARET
+                               &kp LSHFT  &kp LCTRL   &kp LEFT_ALT  &trans           &trans    &trans  &trans          &kp RIGHT_ALT            &kp RCTRL                 &kp RSHFT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -107,11 +107,11 @@
 
             display-name = "adjust";
             bindings = <
-&bt BT_CLR         &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                               &none  &none         &none         &none         &none  &none
-&ext_power EP_TOG  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                            &none  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &none  &none
-&none              &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &none            &none            &none                                      &none  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &none  &none
-&none              &none            &none            &none            &none            &none            &rgb_ug RGB_TOG    &none  &none  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &none  &none
-                                    &kp LSHFT        &kp LCTRL        &kp LEFT_ALT     &none            &none              &none  &none  &none         &kp NUMBER_0  &none
+&rgb_ug RGB_BRI  &bt BT_CLR    &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                            &none  &none         &none         &none         &none  &none
+&rgb_ug RGB_BRD  &bt BT_SEL 0  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &none                                   &none  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &none  &none
+&rgb_ug RGB_EFF  &none         &none            &none            &none            &none                                   &none  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &none  &none
+&rgb_ug RGB_EFR  &none         &none            &none            &none            &none         &rgb_ug RGB_TOG    &none  &none  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &none  &none
+                               &kp LSHFT        &kp LCTRL        &kp LEFT_ALT     &none         &none              &none  &none  &none         &kp NUMBER_0  &none
             >;
         };
     };
