@@ -43,10 +43,10 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp SQT    &kp N1  &kp N2     &kp N3     &kp N4        &kp N5                           &kp N6     &kp N7         &kp N8             &kp N9     &kp N0    &kp BACKSPACE
-&kp TAB    &kp Q   &kp W      &kp E      &kp R         &kp T                            &kp Y      &kp U          &kp I              &kp O      &kp P     &kp ENTER
-&kp CAPS   &kp A   &kp S      &kp D      &kp F         &kp G                            &kp H      &kp J          &kp K              &kp L      &none     &kp SQT
-&kp SLASH  &kp Z   &kp X      &kp C      &kp V         &kp B   &kp C_MUTE    &none      &kp N      &kp M          &kp COMMA          &kp DOT    &kp SEMI  &kp TILDE
+&kp SQT    &kp N1  &kp N2     &kp N3     &kp N4        &kp N5                           &kp N6     &kp N7         &kp N8             &kp N9     &kp N0            &kp BACKSPACE
+&kp TAB    &kp Q   &kp W      &kp E      &kp R         &kp T                            &kp Y      &kp U          &kp I              &kp O      &kp P             &kp ENTER
+&kp CAPS   &kp A   &kp S      &kp D      &kp F         &kp G                            &kp H      &kp J          &kp K              &kp L      &kp PT_C_CEDILLA  &kp PT_ACUTE
+&kp SLASH  &kp Z   &kp X      &kp C      &kp V         &kp B   &kp C_MUTE    &none      &kp N      &kp M          &kp COMMA          &kp DOT    &kp SEMI          &kp TILDE
                    &kp LSHFT  &kp LCTRL  &kp LEFT_ALT  &mo 3   &mo 1         &kp SPACE  &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
             >;
 
@@ -67,8 +67,8 @@
             bindings = <
 &trans  &kp F1      &kp F2     &kp F3      &kp F4        &kp F5                             &kp F6          &kp F7         &kp F8     &kp F9     &kp F10   &kp DEL
 &none   &none       &none      &kp MINUS   &kp PLUS      &kp PRINTSCREEN                    &none           &kp HOME       &kp END    &none      &none     &kp F11
-&trans  &none       &none      &none       &none         &none                              &kp EQUAL       &kp LPAR       &kp RPAR   &kp LBKT   &kp RBKT  &kp CARET
-&trans  &kp K_UNDO  &kp K_CUT  &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp LBRC       &kp RBRC   &none      &kp BSLH  &trans
+&trans  &none       &none      &none       &none         &none                              &kp EQUAL       &kp LPAR       &kp RPAR   &kp LBKT   &kp RBKT  &kp GRAVE
+&trans  &kp K_UNDO  &kp K_CUT  &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp LBRC       &kp RBRC   &none      &kp BSLH  &kp PT_CARET
                     &kp LSHFT  &kp LCTRL   &kp LEFT_ALT  &trans           &trans    &trans  &trans          &kp RIGHT_ALT  &kp RCTRL  &kp RSHFT
             >;
 
