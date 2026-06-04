@@ -41,21 +41,21 @@
             tapping-term-ms = <300>;
         };
 
-        // CONFIGURAÇÃO DO MOUSE: Resposta mais rápida e fluida
+        // CONFIGURAÇÃO DO MOUSE: Deixa o ponteiro ágil e rápido
         mmv {
             compatible = "zmk,behavior-point-move";
             #binding-cells = <1>;
-            trigger-period-ms = <16>;      // Atualização em 60Hz
-            time-to-max-speed-ms = <200>;   // Chega na velocidade máxima em apenas 200ms
-            acceleration-exponent = <1>;    // Aceleração linear direta
+            trigger-period-ms = <16>;      // Atualização fluida em 60Hz
+            time-to-max-speed-ms = <100>;   // Arranca para a velocidade máxima quase instantaneamente (apenas 100ms)
+            acceleration-exponent = <2>;    // Expoente 2 ativa aceleração em curva (multiplica a velocidade conforme segura)
         };
 
-        // CONFIGURAÇÃO DO SCROLL: Rolagem de página mais rápida
+        // CONFIGURAÇÃO DO SCROLL: Rolagem de página ágil
         msc {
             compatible = "zmk,behavior-point-scroll";
             #binding-cells = <1>;
             trigger-period-ms = <16>;
-            time-to-max-speed-ms = <200>;
+            time-to-max-speed-ms = <100>;
         };
     };
 
@@ -149,13 +149,4 @@
             >;
         };
     };
-};
-
-// O AJUSTE DE VELOCIDADE DEVE FICAR AQUI FORA DA RAIZ (Fim do arquivo)
-&mmv {
-    max-speed-hz = <120>; 
-};
-
-&msc {
-    max-speed-hz = <40>;  
 };
