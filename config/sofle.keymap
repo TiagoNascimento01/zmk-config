@@ -46,7 +46,7 @@
             compatible = "zmk,behavior-point-move";
             #binding-cells = <1>;
             trigger-period-ms = <16>;      // Atualização fluida em 60Hz
-            time-to-max-speed-ms = <100>;   // Arranca para a velocidade máxima quase instantaneamente (apenas 100ms)
+            time-to-max-speed-ms = <150>;   // Arranca para a velocidade máxima quase instantaneamente (apenas 100ms)
             acceleration-exponent = <3>;    // Expoente 2 ativa aceleração em curva (multiplica a velocidade conforme segura)
         };
 
