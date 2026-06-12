@@ -88,16 +88,16 @@
             //                | GUI | ALT  | CTRL | LOWER|  ENTER | | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp SQT          &kp N1  &kp N2           &kp N3        &kp N4        &kp N5                                   &kp N6     &kp N7         &kp N8             &kp N9       &kp N0            &kp BACKSPACE
-&kp TAB          &kp Q   &kp W            &kp E         &kp R         &kp T                                    &kp Y      &kp U          &kp I              &kp O        &kp P             &kp ENTER
-&kp CAPS         &kp A   &HWR LEFT_ALT S  &HWR LCTRL D  &HWR LSHFT F  &kp G                                    &kp H      &HWR RSHFT J   &HWR RCTRL K       &HWR LALT L  &kp PT_C_CEDILLA  &kp PT_ACUTE
-&kp PT_QUESTION  &kp Z   &kp X            &kp C         &kp V         &kp B   &kp K_MUTE    &ext_power EP_TOG  &kp N      &kp M          &kp COMMA          &kp DOT      &kp PT_SEMI       &kp PT_TILDE
-                         &kp LSHFT        &kp LCTRL     &kp LEFT_ALT  &mo 3   &mo 1         &kp SPACE          &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
+&kp PT_SQT    &kp N1  &kp N2           &kp N3        &kp N4        &kp N5                                 &kp N6     &kp N7         &kp N8             &kp N9       &kp N0            &kp BACKSPACE
+&kp TAB       &kp Q   &kp W            &kp E         &kp R         &kp T                                  &kp Y      &kp U          &kp I              &kp O        &kp P             &kp ENTER
+&kp CAPS      &kp A   &HWR LEFT_ALT S  &HWR LCTRL D  &HWR LSHFT F  &kp G                                  &kp H      &HWR RSHFT J   &HWR RCTRL K       &HWR LALT L  &kp PT_C_CEDILLA  &kp PT_ACUTE
+&kp PT_SLASH  &kp Z   &kp X            &kp C         &kp V         &kp B   &kp K_MUTE    &kp PRINTSCREEN  &kp N      &kp M          &kp COMMA          &kp DOT      &kp PT_SEMI       &kp PT_TILDE
+                      &kp LSHFT        &kp LCTRL     &kp LEFT_ALT  &mo 3   &mo 1         &kp SPACE        &mo RAISE  &kp RIGHT_ALT  &kp RIGHT_CONTROL  &kp RSHFT
             >;
 
             sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp C_AC_ZOOM_IN C_AC_ZOOM_OUT>;
+                <&inc_dec_kp C_VOL_DN C_VOL_UP>,
+                <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
         };
 
         lower_layer {
@@ -114,8 +114,8 @@
             bindings = <
 &kp ESC            &kp F1      &kp F2        &kp F3      &kp F4        &kp F5                             &kp F6          &kp F7                         &kp F8                          &kp F9                         &kp F10               &kp DEL
 &ext_power EP_TOG  &none       &none         &kp MINUS   &kp PLUS      &kp PRINTSCREEN                    &none           &kp HOME                       &kp END                         &none                          &none                 &kp F11
-&rgb_ug RGB_BRI    &none       &kp LEFT_ALT  &kp LCTRL   &kp RSHFT     &none                              &kp EQUAL       &mt RSHFT PT_LEFT_PARENTHESIS  &mt RCTRL PT_RIGHT_PARENTHESIS  &mt RIGHT_ALT PT_LEFT_BRACKET  &kp PT_RIGHT_BRACKET  &kp GRAVE
-&kp PT_BACKSLASH   &kp K_UNDO  &kp K_CUT     &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp PT_LEFT_BRACE              &kp PT_RIGHT_BRACE              &none                          &kp PT_SLASH          &kp PT_CARET
+&rgb_ug RGB_BRI    &none       &kp LEFT_ALT  &kp LCTRL   &kp RSHFT     &none                              &kp EQUAL       &mt RSHFT PT_LEFT_PARENTHESIS  &mt RCTRL PT_RIGHT_PARENTHESIS  &mt RIGHT_ALT PT_LEFT_BRACKET  &kp PT_RIGHT_BRACKET  &none
+&kp PT_BACKSLASH   &kp K_UNDO  &kp K_CUT     &kp K_COPY  &kp K_PASTE   &none            &trans    &trans  &kp UNDERSCORE  &kp PT_LEFT_BRACE              &kp PT_RIGHT_BRACE              &none                          &none                 &none
                                &kp LSHFT     &kp LCTRL   &kp LEFT_ALT  &trans           &trans    &trans  &trans          &kp RIGHT_ALT                  &kp RCTRL                       &kp RSHFT
             >;
 
@@ -133,7 +133,7 @@
             //                |      |       |       |       |      | |        |      |      |       |      |
 
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3     &bt BT_SEL 4                    &trans    &trans         &trans     &trans     &trans  &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3     &bt BT_SEL 4                    &trans    &trans         &trans     &trans     &trans  &kp BACKSPACE
 &trans      &mkp MB5      &none           &mmv MOVE_UP    &trans           &mkp MB2                        &mkp MB2  &trans         &kp UP     &trans     &none   &trans
 &trans      &mkp MB4      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB1                        &mkp MB1  &kp LEFT       &kp DOWN   &kp RIGHT  &none   &none
 &trans      &kp F5        &none           &msc SCRL_DOWN  &msc SCRL_UP     &mkp MB3      &trans    &trans  &mkp MB3  &trans         &trans     &trans     &trans  &trans
